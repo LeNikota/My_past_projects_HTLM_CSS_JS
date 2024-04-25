@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About me</title>
+    <style>
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(210.03deg, #242829 0%, #0f1110 100%);
+      }
+      main {
+        margin: 0 auto;
+        max-width: 1300px;
+        min-width: 850px;
+        padding: 300px 0 50px 0;
+
+        position: relative;
+        overflow: hidden;
+      }
+      h3 {
+        margin: 0;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        transition: opacity 1s;
+      }
+      .card {
+        padding: 20px 30px;
+        width: 400px;
+        height: 180px;
+        background-color: #faf8fb;
+        border-radius: 20px;
+
+        cursor: pointer;
+      }
+      .cards .card:nth-child(odd) {
+        justify-self: right;
+      }
+      .cards .card:last-child {
+        justify-self: center;
+        width: 650px;
+        grid-column: span 2;
+      }
+
+      .light_green {
+        box-sizing: border-box;
+
+        position: absolute;
+        width: 925px;
+        height: 891px;
+        left: 858px;
+        top: -421px;
+        z-index:-1;
+
+        background: linear-gradient(
+          222.81deg,
+          rgba(64, 255, 0, 0.435) 12.47%,
+          rgba(94, 255, 40, 0.165) 94.1%
+        );
+
+        filter: blur(100px);
+      }
+      .person {
+        position: absolute;
+        width: 477px;
+        left: 50%;
+        top: 0;
+        transform: translateX(-44%);
+        z-index: -3;
+      }
+      .person_blur {
+        width: 800px;
+        height: 500px;
+
+        background: linear-gradient(
+          210.03deg,
+          #2428296c 0%,
+          #242829 40%,
+          #0f1110 100%
+        );
+        backdrop-filter: blur(5px);
+
+        position: absolute;
+        left: 50%;
+        top: 350px;
+        transform: translateX(-50%);
+        z-index: -1;
+      }
+
+      /*Modal window*/
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: ease-in-out all 1s;
+      }
+
+      .modal .card {
+        position: absolute;
+        transition: ease-in-out all 1s;
+      }
+
+      .hide {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal"></div>
+
+    <main>
+      <div class="light_green"></div>
+      <img src="./img/gman.png" class="person" />
+      <div class="person_blur"></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Контакты</h3>
+          <ul>
+            <li>Имя: Красавин Никита</li>
+            <li>Email: alexey.ivanov@example.com</li>
+            <li>Телефон: +7 123-456-7890</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Изучаемые языки</h3>
+          <ul>
+            <li>Русский: Native</li>
+            <li>Английский: C1</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Интересуемые направления</h3>
+          <ul>
+            <li>Программная инженерия.</li>
+            <li>Искусственный интеллект.</li>
+            <li>Сетевое администрирование.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Хочу освоить профессии</h3>
+          <ul>
+            <li>Разработчик программного. обеспечения.</li>
+            <li>Веб-разработка.</li>
+            <li>Мобильная разработчика.</li>
+            <li>Аналитика данных.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Интересы</h3>
+          <ul>
+            <li>Программирование.</li>
+            <li>3D моделирование.</li>
+            <li>Музыка.</li>
+            <li>Рисование.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Образование</h3>
+          <ul>
+            <li>Среднее образование.</li>
+            <li>Среднее специальное образование.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Навыки</h3>
+          <ul>
+            <li>Web-программирование</li>
+            <li>3D моделирование</li>
+            <li>Photoshop и монтаж видео</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Изучаемые языки программирования</h3>
+          <ul>
+            <li>JavaScriot</li>
+            <li>С++</li>
+            <li>С</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>О себе</h3>
+          <ul>
+            <p>
+              На данный момент занимаюсь fron-end и back-end разработкой. Изучаю
+              python и bash в linux. В рамках проектной деятельности
+              разрабатываю в команде platformer на Godot engine.
+            </p>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const modal = document.querySelector(".modal");
+      const cardsContainer = document.querySelector(".cards");
+      const cards = [...document.querySelectorAll(".card")];
+      let selectedCard = null;
+
+      function handleCardClick() {
+        if (modal.firstChild) modal.firstChild.remove();
+          
+          selectedCard = this;
+          const { top, left, width } = selectedCard.getBoundingClientRect();
+          const clone = selectedCard.cloneNode(true);
+
+          clone.style.top = `${top}px`;
+          clone.style.left = `${left}px`;
+          clone.style.width = `${width}px`;
+
+          selectedCard.style.visibility = "hidden";
+          modal.appendChild(clone);
+          modal.style.display = "block";
+          cardsContainer.classList.add("hide");
+
+          setTimeout(() => {
+            clone.style.top = "50%";
+            clone.style.left = "50%";
+            clone.style.transform = "translate(-50%,-50%)";
+
+            modal.style.transform = "scale(1.1)";
+          }, 0);
+      }
+
+      function handleModalClose({ target }) {
+        if (target !== modal) return;
+
+        modal.style.display = "none";
+        modal.style.transform = "none";
+        selectedCard.style.visibility = "visible";
+        cardsContainer.classList.remove("hide");
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener("click", handleCardClick);
+      });
+      window.addEventListener("click", handleModalClose);
+      window.addEventListener("keydown", handleModalClose);
+    </script>
+  </body>
+</html>
