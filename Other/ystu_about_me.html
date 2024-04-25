@@ -238,8 +238,8 @@
           }, 0);
       }
 
-      function handleModalClose({ target }) {
-        if (target !== modal) return;
+      function handleModalClose({ target, key }) {
+        if (target !== modal && key !== "Escape") return;
 
         modal.style.display = "none";
         modal.style.transform = "none";
